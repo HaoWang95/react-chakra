@@ -1,24 +1,36 @@
-import logo from './logo.svg';
-import './App.css';
+import React from "react";
+import {
+  ChakraProvider,theme
+} from '@chakra-ui/react';
+import HomePage from "./pages/home.page";
+import { Route, Routes } from "react-router-dom";
+import AboutPage from "./pages/about.page";
+import ExamplePage from "./pages/example.page";
+import NotFoundPage from "./pages/notfound.page";
+import LoadingPage from "./pages/loading.page";
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <ChakraProvider theme={theme}>
+      <Routes>
+        <Route path="/" element={<HomePage />} />
+        <Route path="about" element={
+          <React.Suspense fallback={<LoadingPage />}>
+            <AboutPage />
+          </React.Suspense>
+        }/>
+        <Route path="examples" element={
+          <React.Suspense fallback={<LoadingPage />}>
+            <ExamplePage />
+          </React.Suspense>
+        } />
+        <Route path="*" element={
+          <React.Suspense fallback={<LoadingPage />}>
+            <NotFoundPage />
+          </React.Suspense>
+        } />
+      </Routes>
+    </ChakraProvider>
   );
 }
 
