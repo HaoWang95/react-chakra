@@ -7,6 +7,7 @@ import {
   useDisclosure,
   Breadcrumb,
   BreadcrumbItem,
+  useColorMode,
 } from "@chakra-ui/react";
 import { HamburgerIcon } from "@chakra-ui/icons";
 import React from "react";
@@ -15,6 +16,7 @@ import { NavLink } from "react-router-dom";
 let Header = () => {
   const { isOpen, onOpen, onClose } = useDisclosure();
   const handleToggle = () => (isOpen ? onClose() : onOpen());
+  const {colorMode, toggleColorMode} = useColorMode();
   return (
     <Flex
       as={"nav"}
@@ -63,8 +65,9 @@ let Header = () => {
         <Button
           variant="outline"
           _hover={{ bg: "teal.700", borderColor: "teal.700" }}
+          onClick={toggleColorMode}
         >
-          Create account
+          Toggle {colorMode === 'light' ? 'Dark' : 'Light'}
         </Button>
       </Box>
     </Flex>
