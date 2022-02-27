@@ -1,5 +1,4 @@
 import { Flex, FormControl, FormLabel, Heading, Input } from "@chakra-ui/react";
-import { Formik } from "formik";
 import React, { useState } from "react";
 
 let AddPostForm = () => {

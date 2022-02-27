@@ -46,6 +46,10 @@ let ExampleMenu = () => {
             <Link to={"/examples/addPost"}>Add new blog posts</Link>
           </MenuItem>
         </MenuGroup>
+        <MenuDivider />
+        <MenuGroup title="Formik Examples">
+          <Link to={"/examples/registerFormik"}>Formik Register Form</Link>
+        </MenuGroup>
       </MenuList>
     </Menu>
   );

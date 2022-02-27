@@ -5,7 +5,8 @@ import { Route, Routes } from "react-router-dom";
 import ErrorBoundary from "./pages/errorboundary.page";
 import LoadingPage from "./pages/loading.page";
 import PostList from "./pages/examples/post/postlist.page";
-import AddPostForm from "./pages/examples/post/addPostForm";
+import RegisterForm from "./pages/examples/FormikExample/RegisterForm.page";
+//import AddPostForm from "./pages/examples/post/addPostForm";
 const HomePage = React.lazy(() => import("./pages/home.page"));
 const AboutPage = React.lazy(() => import("./pages/about.page"));
 const ExamplePage = React.lazy(() => import("./pages/examples/example.page"));
@@ -13,6 +14,7 @@ const NotFoundPage = React.lazy(() => import("./pages/notfound.page"));
 const CounterRedux = React.lazy(() =>
   import("./pages/examples/counterReduxExample/globalCounter")
 );
+const AddPostForm = React.lazy(() => import("./pages/examples/post/addPostForm"))
 
 function App() {
   return (
@@ -60,6 +62,11 @@ function App() {
                 <AddPostForm />
               </Suspense>
             } />
+          <Route path="registerFormik" element={
+            <Suspense fallback={<LoadingPage />}>
+              <RegisterForm />
+            </Suspense>
+          } />
         </Route>
         <Route
           path="*"
