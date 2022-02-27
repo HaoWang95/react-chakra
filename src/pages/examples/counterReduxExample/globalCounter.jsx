@@ -1,4 +1,4 @@
-import { AddIcon, MinusIcon, PlusSquareIcon } from "@chakra-ui/icons";
+import { AddIcon, MinusIcon} from "@chakra-ui/icons";
 import {
   Box,
   Button,
@@ -8,7 +8,6 @@ import {
   Stack,
   Text,
 } from "@chakra-ui/react";
-import { type } from "@testing-library/user-event/dist/type";
 import React, { useCallback, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import {

@@ -1,4 +1,4 @@
-import { ChevronDownIcon } from "@chakra-ui/icons";
+import { ChevronDownIcon, ChevronUpIcon } from "@chakra-ui/icons";
 import {
   Center,
   Heading,
@@ -7,19 +7,25 @@ import {
   Button,
   MenuList,
   MenuItem,
+  MenuGroup,
+  MenuDivider,
 } from "@chakra-ui/react";
-import React from "react";
+import React, { useState } from "react";
 import { Link, Outlet } from "react-router-dom";
 import Layout from "../../components/layout";
 
 let ExampleMenu = () => {
+  const [menuOpen, setMenuOpen] = useState(false);
+
   return (
-    <Menu>
+    <Menu isLazy>
+      {console.log("menu rendered")}
       <MenuButton
         as={Button}
         colorScheme="cyan"
         variant="outline"
-        rightIcon={<ChevronDownIcon />}
+        rightIcon={menuOpen ? <ChevronUpIcon /> : <ChevronDownIcon />}
+        onClick={() => setMenuOpen((prev) => !prev)}
       >
         All examples
       </MenuButton>
@@ -27,9 +33,19 @@ let ExampleMenu = () => {
         <MenuItem>
           <Link to={"/examples"}>Example Index</Link>
         </MenuItem>
+        <MenuDivider />
         <MenuItem>
-          <Link to={"/examples/counter"}>Redux counter example</Link>
+          <Link to={"/examples/counter"}>Redux Counter Example</Link>
         </MenuItem>
+        <MenuDivider />
+        <MenuGroup title="Posts">
+          <MenuItem>
+            <Link to={"/examples/posts"}>Blog Posts Example</Link>
+          </MenuItem>
+          <MenuItem>
+            <Link to={"/examples/addPost"}>Add new blog posts</Link>
+          </MenuItem>
+        </MenuGroup>
       </MenuList>
     </Menu>
   );
