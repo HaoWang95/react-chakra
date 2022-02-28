@@ -8,6 +8,7 @@ import {
   Select,
   Text,
   Center,
+  useToast,
 } from "@chakra-ui/react";
 
 import React from "react";
@@ -32,6 +33,15 @@ const AddPostSchema = Yup.object().shape({
 let AddPostForm = () => {
   const users = useSelector((state) => state.users);
   const dispatch = useDispatch();
+
+  const toastMessage = useToast();
+
+  const authorOptions = users.map((user) => (
+    <option key={user.id} value={user.id}>
+      {user.name}
+    </option>
+  ));
+
   const addPostForm = useFormik({
     initialValues: {
       title: "",
@@ -39,13 +49,20 @@ let AddPostForm = () => {
       user: "",
     },
     validationSchema: AddPostSchema,
-    onSubmit: (values,{resetForm}) => {
+    onSubmit: (values, { resetForm }) => {
       // print an alert first, then dispatch the data into reducers
-      alert(JSON.stringify(values, null, 2));
-      let result =
+      //alert(JSON.stringify(values, null, 2));
       dispatch(postAdded(values.title, values.content, values.user));
-      alert(JSON.stringify(result, null, 2))
       resetForm({});
+
+      toastMessage({
+        title: "New Post Created",
+        description: "Go to post page to view the newly created post",
+        position: 'top',
+        status: "success",
+        duration: 1500,
+        isClosable: true,
+      });
     },
   });
 
@@ -100,20 +117,14 @@ let AddPostForm = () => {
               icon={<ChevronDownIcon />}
               onBlur={addPostForm.handleBlur}
               onChange={addPostForm.handleChange}
-              {...addPostForm.getFieldProps('user')}
+              {...addPostForm.getFieldProps("user")}
             >
-              {users.map((user) => {
-                return (
-                  <option key={user.id} value={user.id}>
-                    {user.name}
-                  </option>
-                );
-              })}
+              {authorOptions}
             </Select>
           </Center>
-          {(addPostForm.errors.user && addPostForm.touched.user) ? (
-              <Text color={"red"}>{addPostForm.errors.user}</Text>
-            ) : null}
+          {addPostForm.errors.user && addPostForm.touched.user ? (
+            <Text color={"red"}>{addPostForm.errors.user}</Text>
+          ) : null}
           <Button
             type="submit"
             colorScheme={"cyan"}

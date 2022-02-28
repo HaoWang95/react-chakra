@@ -7,6 +7,7 @@ import {
   Box,
 } from "@chakra-ui/react";
 import React from "react";
+import { PostAuthor } from "./postAuthor";
 
 let PostItem = (props) => {
   return (
@@ -16,6 +17,9 @@ let PostItem = (props) => {
           <Box textAlign={"left"} flex="1">
               <Badge variant={'solid'} colorScheme='green'>POST</Badge>{" - "}
             {props.title}
+            <Badge>
+                <PostAuthor userId={props.userId?props.userId:''} />
+            </Badge>
           </Box>
           <AccordionIcon />
         </AccordionButton>

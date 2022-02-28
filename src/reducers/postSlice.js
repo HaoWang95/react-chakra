@@ -7,6 +7,7 @@ const initialState = [
     title: "Use Redux to build a counter",
     content: "Details of how to use Redux to build a global counter",
     date: sub(new Date(), {minutes: 10}).toISOString(),
+    user: "0",
   },
   {
     id: "2",
@@ -14,6 +15,7 @@ const initialState = [
     content:
       "All posts can be treated as global state with a post data structure",
     date: sub(new Date(), {minutes: 10}).toISOString(),
+    user: "1",
   },
 
 ];
