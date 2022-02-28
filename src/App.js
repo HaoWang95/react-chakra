@@ -1,8 +1,7 @@
 import React, { Suspense } from "react";
-import { Center, ChakraProvider } from "@chakra-ui/react";
+import { ChakraProvider } from "@chakra-ui/react";
 import theme from "./theme/theme";
 import { Route, Routes } from "react-router-dom";
-import ErrorBoundary from "./pages/errorboundary.page";
 import LoadingPage from "./pages/loading.page";
 import PostList from "./pages/examples/post/postlist.page";
 import RegisterForm from "./pages/examples/FormikExample/RegisterForm.page";
