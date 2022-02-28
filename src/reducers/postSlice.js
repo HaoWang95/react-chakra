@@ -24,9 +24,10 @@ export const postsSlice = createSlice({
   reducers: {
     postAdded: {
       reducer(state, action) {
+        console.log(action.payload)
         state.push(action.payload);
       },
-      // reducer callback
+      // prepare to call the reducer
       prepare(title, content, userId) {
         return {
           payload: {
@@ -41,5 +42,9 @@ export const postsSlice = createSlice({
     },
   },
 });
+
+export const {
+    postAdded
+} = postsSlice.actions;
 
 export default postsSlice.reducer;
