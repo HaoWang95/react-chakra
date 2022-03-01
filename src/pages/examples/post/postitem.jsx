@@ -15,16 +15,21 @@ let PostItem = (props) => {
       <h3>
         <AccordionButton>
           <Box textAlign={"left"} flex="1">
-              <Badge variant={'solid'} colorScheme='green'>POST</Badge>{" - "}
+            <Badge variant={"solid"} colorScheme="green">
+              POST
+            </Badge>
+            {" - "}
             {props.title}
             <Badge>
-                <PostAuthor userId={props.userId?props.userId:''} />
+              <PostAuthor userId={props.userId ? props.userId : ""} />
             </Badge>
           </Box>
           <AccordionIcon />
         </AccordionButton>
       </h3>
-      <AccordionPanel pb={4}>{props.content.substring(0, 100)}...</AccordionPanel>
+      <AccordionPanel pb={4}>
+        {props.content.substring(0, 100)}...
+      </AccordionPanel>
     </AccordionItem>
   );
 };

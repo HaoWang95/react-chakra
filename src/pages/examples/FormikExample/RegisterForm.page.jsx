@@ -23,7 +23,7 @@ let RegisterForm = () => {
         .max(20, "Password should be between 10 to 20 characters"),
     }),
     onSubmit: (values) => {
-        // when dealing with redux, we can dispatch the action here
+      // when dealing with redux, we can dispatch the action here
       console.log(values);
       alert(JSON.stringify(values, null, 2));
     },

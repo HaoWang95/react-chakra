@@ -58,7 +58,7 @@ let AddPostForm = () => {
       toastMessage({
         title: "New Post Created",
         description: "Go to post page to view the newly created post",
-        position: 'top',
+        position: "top",
         status: "success",
         duration: 1500,
         isClosable: true,

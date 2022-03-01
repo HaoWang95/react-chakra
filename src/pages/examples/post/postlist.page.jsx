@@ -10,10 +10,21 @@ let PostList = () => {
 
   return (
     <Center>
-      <Accordion defaultIndex={[15]} allowToggle colorScheme={'cyan'} variant='outline'>
+      <Accordion
+        defaultIndex={[15]}
+        allowToggle
+        colorScheme={"cyan"}
+        variant="outline"
+        width={"50%"}
+      >
         {posts.map((post) => {
           return (
-            <PostItem key={post.id} title={post.title} content={post.content} userId={post.user} />
+            <PostItem
+              key={post.id}
+              title={post.title}
+              content={post.content}
+              userId={post.user}
+            />
           );
         })}
       </Accordion>

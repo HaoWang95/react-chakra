@@ -13,7 +13,10 @@ const NotFoundPage = React.lazy(() => import("./pages/notfound.page"));
 const CounterRedux = React.lazy(() =>
   import("./pages/examples/counterReduxExample/globalCounter")
 );
-const AddPostForm = React.lazy(() => import("./pages/examples/post/addPostForm"))
+const AddPostForm = React.lazy(() =>
+  import("./pages/examples/post/addPostForm")
+);
+const JsonPlaceHolderPosts = React.lazy(() => import("./pages/examples/jsonExample/jsonPost"));
 
 function App() {
   return (
@@ -51,21 +54,38 @@ function App() {
               </Suspense>
             }
           />
-          <Route path="posts" element={
-            <Suspense fallback={<LoadingPage />}>
-              <PostList />
-            </Suspense>
-          }/>
-          <Route path="addPost" element={
+          <Route
+            path="posts"
+            element={
+              <Suspense fallback={<LoadingPage />}>
+                <PostList />
+              </Suspense>
+            }
+          />
+          <Route
+            path="addPost"
+            element={
               <Suspense fallback={<LoadingPage />}>
                 <AddPostForm />
               </Suspense>
-            } />
-          <Route path="registerFormik" element={
-            <Suspense fallback={<LoadingPage />}>
-              <RegisterForm />
-            </Suspense>
-          } />
+            }
+          />
+          <Route
+            path="registerFormik"
+            element={
+              <Suspense fallback={<LoadingPage />}>
+                <RegisterForm />
+              </Suspense>
+            }
+          />
+          <Route
+            path="reactQueryPosts"
+            element={
+              <Suspense fallback={<LoadingPage />}>
+                <JsonPlaceHolderPosts />
+              </Suspense>
+            }
+          />
         </Route>
         <Route
           path="*"

@@ -48,7 +48,15 @@ let ExampleMenu = () => {
         </MenuGroup>
         <MenuDivider />
         <MenuGroup title="Formik Examples">
-          <Link to={"/examples/registerFormik"}>Formik Register Form</Link>
+          <MenuItem>
+            <Link to={"/examples/registerFormik"}>Formik Register Form</Link>
+          </MenuItem>
+        </MenuGroup>
+        <MenuDivider />
+        <MenuGroup title="React Query Examples">
+          <MenuItem>
+            <Link to={"/examples/reactQueryPosts"}>React Query Posts</Link>
+          </MenuItem>
         </MenuGroup>
       </MenuList>
     </Menu>
