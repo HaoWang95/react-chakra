@@ -31,7 +31,7 @@ let RegisterForm = () => {
 
   return (
     <Center>
-      <Box>
+      <Box width={"40%"}>
         <form onSubmit={formik.handleSubmit}>
           <FormControl isRequired>
             <FormLabel htmlFor="email">Email</FormLabel>

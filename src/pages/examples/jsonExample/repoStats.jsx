@@ -14,7 +14,9 @@ const getRepoData = async () => {
 //const queryClient = new QueryClient();
 
 let RepoData = () => {
-  const { isLoading, error, data } = useQuery("repoData", getRepoData);
+  const { isLoading, error, data } = useQuery("repoData", getRepoData, {
+    staleTime: 5000,
+  });
   if (isLoading) return <Spinner />;
 
   if (error) return "An error has occurred: " + error.message;
@@ -34,9 +36,7 @@ let RepoData = () => {
 };
 
 let RepoStats = () => {
-  return (
-      <RepoData />
-  );
+  return <RepoData />;
 };
 
 export default RepoStats;

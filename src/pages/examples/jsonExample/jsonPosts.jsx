@@ -6,7 +6,11 @@ import { getPlaceholderPosts } from "../../../services/PlaceHolderPostService";
 import PostDetail from "./postItem";
 
 let JsonPostList = () => {
-  const { isLoading, error, data } = useQuery("jsonPosts", getPlaceholderPosts);
+  const { isLoading, error, data } = useQuery(
+    "jsonPosts",
+    getPlaceholderPosts,
+    { staleTime: 10000 }
+  );
   if (isLoading) return <Spinner />;
   if (error) return <Text>{error.message}</Text>;
 
