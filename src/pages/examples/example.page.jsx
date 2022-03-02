@@ -55,7 +55,10 @@ let ExampleMenu = () => {
         <MenuDivider />
         <MenuGroup title="React Query Examples">
           <MenuItem>
-            <Link to={"/examples/reactQueryPosts"}>React Query Posts</Link>
+            <Link to={"/examples/reactQueryRepo"}>React Query Repo</Link>
+          </MenuItem>
+          <MenuItem>
+            <Link to={"/examples/jsonPosts"}>React Query Json Posts</Link>
           </MenuItem>
         </MenuGroup>
       </MenuList>

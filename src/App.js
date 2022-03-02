@@ -5,7 +5,7 @@ import { Route, Routes } from "react-router-dom";
 import LoadingPage from "./pages/loading.page";
 import PostList from "./pages/examples/post/postlist.page";
 import RegisterForm from "./pages/examples/FormikExample/RegisterForm.page";
-//import AddPostForm from "./pages/examples/post/addPostForm";
+// import PostListWrapper from "./pages/examples/jsonExample/jsonPosts";
 const HomePage = React.lazy(() => import("./pages/home.page"));
 const AboutPage = React.lazy(() => import("./pages/about.page"));
 const ExamplePage = React.lazy(() => import("./pages/examples/example.page"));
@@ -16,7 +16,10 @@ const CounterRedux = React.lazy(() =>
 const AddPostForm = React.lazy(() =>
   import("./pages/examples/post/addPostForm")
 );
-const JsonPlaceHolderPosts = React.lazy(() => import("./pages/examples/jsonExample/jsonPost"));
+const RepoStats = React.lazy(() =>
+  import("./pages/examples/jsonExample/repoStats")
+);
+const PostListWrapper = React.lazy(() => import("./pages/examples/jsonExample/jsonPosts"))
 
 function App() {
   return (
@@ -79,10 +82,19 @@ function App() {
             }
           />
           <Route
-            path="reactQueryPosts"
+            path="reactQueryRepo"
             element={
               <Suspense fallback={<LoadingPage />}>
-                <JsonPlaceHolderPosts />
+                <RepoStats />
+              </Suspense>
+            }
+          />
+          <Route
+            path="jsonPosts"
+            element={
+              <Suspense fallback={<LoadingPage />}>
+                {console.log(PostListWrapper)}
+                <PostListWrapper />
               </Suspense>
             }
           />

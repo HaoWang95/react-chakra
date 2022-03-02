@@ -4,6 +4,4 @@ const getPosts = async () => {
     return response.json();
 }
 
-export {
-    getPosts,
-};
+export default getPosts;

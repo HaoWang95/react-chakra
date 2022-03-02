@@ -1,7 +1,7 @@
 import { Center, Heading, Spinner, Text } from "@chakra-ui/react";
 import React from "react";
-import { QueryClient, QueryClientProvider, useQuery } from "react-query";
-import { getPosts } from "../../../services/JsonService";
+import { useQuery } from "react-query";
+import { ReactQueryDevtools } from "react-query/devtools";
 
 const getRepoData = async () => {
   const response = await fetch(
@@ -11,7 +11,7 @@ const getRepoData = async () => {
 };
 
 // It seems the queryClient and the useQuery should be used in different components
-const queryClient = new QueryClient();
+//const queryClient = new QueryClient();
 
 let RepoData = () => {
   const { isLoading, error, data } = useQuery("repoData", getRepoData);
@@ -27,17 +27,16 @@ let RepoData = () => {
         <strong>👀 {data.subscribers_count}</strong>{" "}
         <strong>✨ {data.stargazers_count}</strong>{" "}
         <strong>🍴 {data.forks_count}</strong>
+        <ReactQueryDevtools />
       </div>
     </Center>
   );
 };
 
-let JsonPlaceHolderPosts = () => {
+let RepoStats = () => {
   return (
-    <QueryClientProvider client={queryClient}>
       <RepoData />
-    </QueryClientProvider>
   );
 };
 
-export default JsonPlaceHolderPosts;
+export default RepoStats;
