@@ -1,31 +1,32 @@
-import { Center, Spinner, Text } from "@chakra-ui/react";
+import { Center, Spinner, Text, VStack } from "@chakra-ui/react";
 import React from "react";
 import { useQuery } from "react-query";
 import { ReactQueryDevtools } from "react-query/devtools";
-import getPosts from "../../../services/JsonService";
+import { getPlaceholderPosts } from "../../../services/PlaceHolderPostService";
+import PostDetail from "./postItem";
 
 let JsonPostList = () => {
-  const { isLoading, error, data } = useQuery("jsonPosts", getPosts);
+  const { isLoading, error, data } = useQuery("jsonPosts", getPlaceholderPosts);
   if (isLoading) return <Spinner />;
   if (error) return <Text>{error.message}</Text>;
-  console.log(data);
+
+  const renderPosts = () =>
+    data.map((item) => {
+      return <PostDetail post={item} />;
+    });
+
   return (
     <Center>
-      <div>
-        Post lists will be rendered here
-        <ReactQueryDevtools />
-      </div>
+      <VStack spacing={6} width="70%">
+        {renderPosts()}
+      </VStack>
+      <ReactQueryDevtools />
     </Center>
   );
 };
 
 let PostListWrapper = () => {
-  return (
-    <Center>
-      <Text>Posts data will be rendered here</Text>
-      <JsonPostList />
-    </Center>
-  );
+  return <JsonPostList />;
 };
 
 export default PostListWrapper;
