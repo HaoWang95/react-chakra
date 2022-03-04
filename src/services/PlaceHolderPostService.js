@@ -5,7 +5,7 @@ export const getPlaceholderPosts = async () => {
   return response.json();
 };
 
-export const getPlaceHolderPostsLimits = async (page, limit=5) => {
+export const getPlaceHolderPostsLimits = async (page, limit=2) => {
     const response = await fetch(
         `https://jsonplaceholder.typicode.com/posts?_page=${page}&&_limit=${limit}`
     );

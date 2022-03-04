@@ -11,7 +11,11 @@ let PostItemPage = () => {
     <Flex direction={"column"}>
       <Center direction="column">
         <Text>{`Post ${params.postId}`}</Text>
-        <Button width={"fit-content"} onClick={() => navigate(-1)}>Back</Button>
+      </Center>
+      <Center>
+        <Button width={"fit-content"} onClick={() => navigate(-1)}>
+          Back
+        </Button>
       </Center>
     </Flex>
   );
