@@ -5,7 +5,8 @@ import { Route, Routes } from "react-router-dom";
 import LoadingPage from "./pages/loading.page";
 import PostList from "./pages/examples/post/postlist.page";
 import RegisterForm from "./pages/examples/FormikExample/RegisterForm.page";
-// import PostListWrapper from "./pages/examples/jsonExample/jsonPosts";
+import PostItemPage from "./pages/examples/jsonExample/postItemWithComments";
+
 const HomePage = React.lazy(() => import("./pages/home.page"));
 const AboutPage = React.lazy(() => import("./pages/about.page"));
 const ExamplePage = React.lazy(() => import("./pages/examples/example.page"));
@@ -93,8 +94,15 @@ function App() {
             path="jsonPosts"
             element={
               <Suspense fallback={<LoadingPage />}>
-                {console.log(PostListWrapper)}
                 <PostListWrapper />
+              </Suspense>
+            }
+          />
+          <Route 
+            path="jsonPosts/:postId"
+            element={
+              <Suspense fallback={<LoadingPage />}>
+                <PostItemPage />
               </Suspense>
             }
           />

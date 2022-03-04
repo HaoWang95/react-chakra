@@ -2,6 +2,7 @@ import { Center, Spinner, Text, VStack } from "@chakra-ui/react";
 import React from "react";
 import { useQuery } from "react-query";
 import { ReactQueryDevtools } from "react-query/devtools";
+import { Outlet } from "react-router-dom";
 import { getPlaceholderPosts } from "../../../services/PlaceHolderPostService";
 import PostDetail from "./postItem";
 
@@ -16,7 +17,11 @@ let JsonPostList = () => {
 
   const renderPosts = () =>
     data.map((item) => {
-      return <PostDetail post={item} />;
+      return (
+        <>
+          <PostDetail id={item.id} post={item} key={item.id} />
+        </>
+      );
     });
 
   return (
