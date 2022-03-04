@@ -1,11 +1,19 @@
-import { Center } from "@chakra-ui/react";
+import { Button, Center, Flex, Text } from "@chakra-ui/react";
 import React from "react";
+import { useParams, useNavigate } from "react-router-dom";
+
+// Perhaps consider to route this component into a single page
 
 let PostItemPage = () => {
+  let params = useParams();
+  let navigate = useNavigate();
   return (
-    <Center>
-      <Text>PostComment</Text>
-    </Center>
+    <Flex direction={"column"}>
+      <Center direction="column">
+        <Text>{`Post ${params.postId}`}</Text>
+        <Button width={"fit-content"} onClick={() => navigate(-1)}>Back</Button>
+      </Center>
+    </Flex>
   );
 };
 
