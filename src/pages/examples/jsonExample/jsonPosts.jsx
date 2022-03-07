@@ -2,28 +2,30 @@ import { Button, Center, Spinner, Text, VStack } from "@chakra-ui/react";
 import React, { useEffect, useReducer, useState } from "react";
 import { useQuery } from "react-query";
 import { ReactQueryDevtools } from "react-query/devtools";
-import { PostPageNumberProvider } from "../../../contexts/postPageProvider";
-import { postPageReducer } from "../../../contexts/postPageReducer";
-import { initPostPageState } from "../../../contexts/postPageState";
+import { useDispatch } from "react-redux";
+import { useSelector } from "react-redux";
+import { pageNumberDecrement, pageNumberIncrement } from "../../../reducers/pagNumberSlice";
 import { getPlaceHolderPostsLimits } from "../../../services/PlaceHolderPostService";
 import PostDetail from "./postItem";
 
 let JsonPostList = () => {
   // If the user routes back from a post detail page, this page will be `refreshed and re-rendered` with page = 0
-  // Consider change useState to a useContext and useReducer concept.
-  const [page, setPage] = useState(0);
-  const [state, dispatch] = useReducer(postPageReducer, initPostPageState);
-  console.log(state, dispatch);
+  // Consider change useState to a useContext and useReducer concept or lift the page number to a global state using redux
+
+  //const [page, setPage] = useState(0);
+  const pageNumber = useSelector(state => state.pageNumber.pageNumber);
+  const pageNumberDispatch = useDispatch();
+  console.log(`global page number ${pageNumber}`)
+ 
 
   useEffect(() => {
-    console.log(page);
-    console.log(state.pageNumber);
+    console.log(pageNumber);
     return;
-  }, [page, state]);
+  }, [pageNumber]);
 
   const { isLoading, error, data } = useQuery(
-    ["jsonPosts", page],
-    () => getPlaceHolderPostsLimits(page),
+    ["jsonPosts", pageNumber],
+    () => getPlaceHolderPostsLimits(pageNumber),
     { staleTime: 10000 }
   );
   if (isLoading)
@@ -52,24 +54,24 @@ let JsonPostList = () => {
           margin={"1rem"}
           variant="outline"
           colorScheme={"cyan"}
-          disabled={page === 0 ? true : false}
+          disabled={pageNumber === 0 ? true : false}
           onClick={() => {
-            if (page > 0) {
-              setPage((prev) => prev - 1);
-              dispatch({ type: "REDUCE_PAGE_NUMBER" });
+            if (pageNumber > 0) {
+              //setPage((prev) => prev - 1);
+              pageNumberDispatch(pageNumberDecrement());
             }
           }}
         >
           Previous Page
         </Button>
-        <Text>Page {page + 1}</Text>
+        <Text>Page {pageNumber}</Text>
         <Button
           margin={"1rem"}
           variant="outline"
           colorScheme={"cyan"}
           onClick={() => {
-            setPage((prev) => prev + 1);
-            dispatch({ type: "ADD_PAGE_NUMBER" });
+            //setPage((prev) => prev + 1);
+            pageNumberDispatch(pageNumberIncrement());
           }}
         >
           Next Page
