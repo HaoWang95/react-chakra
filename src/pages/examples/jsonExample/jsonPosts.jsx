@@ -1,9 +1,8 @@
 import { Button, Center, Spinner, Text, VStack } from "@chakra-ui/react";
-import React, { useEffect, useReducer, useState } from "react";
+import React, { useEffect } from "react";
 import { useQuery } from "react-query";
 import { ReactQueryDevtools } from "react-query/devtools";
-import { useDispatch } from "react-redux";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { pageNumberDecrement, pageNumberIncrement } from "../../../reducers/pagNumberSlice";
 import { getPlaceHolderPostsLimits } from "../../../services/PlaceHolderPostService";
 import PostDetail from "./postItem";
@@ -19,6 +18,8 @@ let JsonPostList = () => {
  
 
   useEffect(() => {
+      // to eliminate the time taken by react-query to fetch data
+      // for each time the pageNumber is changed, we can cache the next page in advance using the useEffect hook
     console.log(pageNumber);
     return;
   }, [pageNumber]);
@@ -64,7 +65,7 @@ let JsonPostList = () => {
         >
           Previous Page
         </Button>
-        <Text>Page {pageNumber}</Text>
+        <Text>Page {pageNumber + 1}</Text>
         <Button
           margin={"1rem"}
           variant="outline"

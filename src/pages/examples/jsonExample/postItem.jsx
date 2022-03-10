@@ -8,7 +8,9 @@ const PostDetail = ({ post }) => {
       <Heading fontSize={"x-large"}>{post.title}</Heading>
       <Text mt={4}>{post.body}</Text>
       <Center>
-        <Link to={`/examples/jsonPosts/${post.id}`}>View More</Link>
+        <Link to={`/examples/jsonPosts/${post.id}`}>
+            <Text color="teal">View More</Text>
+        </Link>
       </Center>
     </Box>
   );
